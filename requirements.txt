@@ -1,0 +1,8 @@
+beautifulsoup4
+dateutil
+google-colab-selenium
+requests
+selenium
+de_core_news_sm==3.7.0
+num2words
+sentence_transformers

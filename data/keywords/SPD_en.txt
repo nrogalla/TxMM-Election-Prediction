@@ -1,0 +1,12 @@
+SPD, Sozialdemokratische Partei, 
+Scholz, Chancellor, Federal Chancellery,
+Faeser, Minister of the Interior,
+Ampelregierung, government,
+Traffic light, Traffic light coaltion, Traffic-light-coalition, Traffic-light,
+Heil, Minister of Labour,
+Pistorius, Minister of Defense,
+Lauterbach, Minister of Health,
+Schulze, Minister of Development,
+Geywitz, Minister of Construction,
+Esken, SPD Co-Chairwoman,
+Klingbeil, SPD Co-Chairman

@@ -1,0 +1,20 @@
+name: myenv
+channels:
+  - defaults
+dependencies:
+  - beautifulsoup4
+  - dateutil
+  - requests
+  - selenium
+  - nltk
+  - gensim
+  - spacy
+  - transformers
+  - tika
+  - pip
+  - pip:
+    - google-colab-selenium
+    - num2words
+    - sentence-transformers
+    - NewsSentiment
+    - googletrans==3.1.0a0

@@ -13,6 +13,22 @@ from selenium.webdriver.common.by import By
 
 
 def save_headlines_to_file(headlines, file_path):
+    """
+    Save headlines to a file.
+
+    Parameters:
+        headlines (list): A list of dictionaries where each dictionary contains 'date' and 'headline' keys.
+        file_path (str): The file path to save the headlines to.
+
+    Returns:
+        None
+
+    Example:
+        save_headlines_to_file(headlines=[
+            {'date': '2024-03-26', 'headline': 'Example headline 1'},
+            {'date': '2024-03-27', 'headline': 'Example headline 2'}
+        ], file_path='headlines.txt')
+    """
     with open(file_path, 'w', encoding='utf-8') as file:
         for entry in headlines:
             date = entry['date']
@@ -20,6 +36,18 @@ def save_headlines_to_file(headlines, file_path):
             file.write(f"{date} - {headline}\n")
 
 def parse_date_from_auxiliary(date_string):
+  """
+    Parse date and time from an auxiliary date string. Helper function used for spiegel scraping. 
+
+    Parameters:
+        date_string (str): The date string to parse, in the format 'day. month year, hour.minute Uhr'.
+
+    Returns:
+        datetime: A datetime object representing the parsed date and time.
+
+    Example:
+        parsed_date = parse_date_from_auxiliary('26. März 2024, 13.45 Uhr')
+  """
   # Extract date and time using regular expressions
   match = re.search(r'(\d+)\. (\w+) (\d+), (\d+\.\d+) Uhr', date_string)
   if match:
@@ -46,6 +74,19 @@ def parse_date_from_auxiliary(date_string):
       print("Invalid date format:", date_string)
 
 def scrape_spiegel_headlines(start_date, end_date):
+    """
+    Scrape headlines from Spiegel Online within a specified date range.
+
+    Parameters:
+        start_date (datetime): The start date for scraping headlines.
+        end_date (datetime): The end date for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_spiegel_headlines(start_date=datetime(2024, 3, 1), end_date=datetime(2024, 3, 26))
+    """
     base_url = 'https://www.spiegel.de/politik/deutschland'
     data = []
 
@@ -76,6 +117,19 @@ def scrape_spiegel_headlines(start_date, end_date):
     return data
 
 def scrape_bild_headlines(start_date, end_date):
+    """
+    Scrape headlines from Bild within a specified date range.
+
+    Parameters:
+        start_date (datetime): The start date for scraping headlines.
+        end_date (datetime): The end date for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_bild_headlines(start_date=datetime(2024, 3, 1), end_date=datetime(2024, 3, 26))
+    """
     base_url = 'https://www.bild.de/themen/uebersicht/archiv/archiv-82532020.bild.html'
     data = []
 
@@ -104,6 +158,19 @@ def scrape_bild_headlines(start_date, end_date):
 
 
 def scrape_sz_headlines(start_date, end_date):
+    """
+    Scrape headlines from SZ within a specified date range.
+
+    Parameters:
+        start_date (datetime): The start date for scraping headlines.
+        end_date (datetime): The end date for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_sz_headlines(start_date=datetime(2024, 3, 1), end_date=datetime(2024, 3, 26))
+    """
     # Set up the webdriver
     driver = gs.Chrome()
 
@@ -142,6 +209,15 @@ def scrape_sz_headlines(start_date, end_date):
 
 
 def scrape_faz_headlines():
+    """
+    Scrape headlines from faz within a specified date range.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_faz_headlines()
+    """
     base_url = "https://fazarchiv.faz.net/faz-portal/faz-archiv"
     query_params = {
         'q': 'WORTE:>1',
@@ -186,6 +262,19 @@ def scrape_faz_headlines():
     return data
 
 def scrape_focus_headlines(start_nr, end_nr):
+    """
+    Scrape headlines from Focus Online within a specified issue number range.
+
+    Parameters:
+        start_nr (int): The start issue number for scraping headlines.
+        end_nr (int): The end issue number for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_focus_headlines(start_nr=1, end_nr=10)
+    """
     base_url = 'https://www.focus.de/magazin/archiv/jahrgang_2023'
     data = []
     ausgaben_nr = start_nr
@@ -235,6 +324,19 @@ def scrape_focus_headlines(start_nr, end_nr):
 
 
 def scrape_tagesschau_headlines(start_date, end_date):
+    """
+    Scrape headlines from Tagesschau within a specified date range.
+
+    Parameters:
+        start_date (datetime): The start date for scraping headlines.
+        end_date (datetime): The end date for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_tagesschau_headlines(start_date=datetime(2024, 3, 1), end_date=datetime(2024, 3, 26))
+    """
     base_url = 'https://www.tagesschau.de/archiv'
     data = []
 
@@ -266,6 +368,19 @@ def scrape_tagesschau_headlines(start_date, end_date):
     return data
 
 def scrape_welt_headlines(start_date, end_date):
+    """
+    Scrape headlines from Welt within a specified date range.
+
+    Parameters:
+        start_date (datetime): The start date for scraping headlines.
+        end_date (datetime): The end date for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_welt_headlines(start_date=datetime(2024, 3, 1), end_date=datetime(2024, 3, 26))
+    """
     base_url = 'https://www.welt.de/schlagzeilen'
     data = []
 
@@ -300,14 +415,25 @@ def scrape_welt_headlines(start_date, end_date):
 
 
 def scrape_t_online_headlines(start_date, end_date):
+    """
+    Scrape headlines from T-online within a specified date range.
+
+    Parameters:
+        start_date (datetime): The start date for scraping headlines.
+        end_date (datetime): The end date for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_t_online_headlines(start_date=datetime(2024, 3, 1), end_date=datetime(2024, 3, 26))
+    """
     base_url = 'https://www.t-online.de/nachrichten/deutschland'
     article_date = datetime.now()
     page_num = 1
     data = []
     # Navigate to the news website
     while article_date >= start_date:
-        print(article_date)
-        print(page_num)
         driver = gs.Chrome()
         url = f'{base_url}/page_{page_num}/'
         driver.get(url)
@@ -366,6 +492,19 @@ def scrape_t_online_headlines(start_date, end_date):
 
 
 def scrape_zeit_headlines(start_nr, end_nr):
+    """
+    Scrape headlines from Zeit within a specified issue number range.
+
+    Parameters:
+        start_nr (int): The start issue number for scraping headlines.
+        end_nr (int): The end issue number for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_zeit_headlines(start_nr=1, end_nr=10)
+    """
     base_url = 'https://www.zeit.de/2023'
     data = []
     ausgaben_nr = start_nr
@@ -419,6 +558,19 @@ def scrape_zeit_headlines(start_nr, end_nr):
 
 
 def scrape_n_tv_headlines(start_date, end_date):
+    """
+    Scrape headlines from N.tv within a specified date range.
+
+    Parameters:
+        start_date (datetime): The start date for scraping headlines.
+        end_date (datetime): The end date for scraping headlines.
+
+    Returns:
+        list: A list of dictionaries, where each dictionary contains 'date' and 'headline' keys.
+
+    Example:
+        headlines = scrape_n_tv_headlines(start_date=datetime(2024, 3, 1), end_date=datetime(2024, 3, 26))
+    """
     base_url = 'https://www.n-tv.de/suche/'
     article_date = datetime.now()
     page_num = 1
@@ -429,10 +581,8 @@ def scrape_n_tv_headlines(start_date, end_date):
 
     # Navigate to the news website
     while article_date >= start_date:
-        print(page_num)
         url = f'{base_url}?q=2023&at=m&page={page_num}'
         driver.get(url)
-        print(url)
 
         # Use Selenium to interact with the page
         soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -452,14 +602,13 @@ def scrape_n_tv_headlines(start_date, end_date):
                 except:
                     print(date_string)
 
-            print(article_date)
+            
             headline_span = article.find('span', class_='teaser__headline')
             headline = headline_span.text
-            print(headline)
+            
 
             if article_date >= start_date and article_date <= end_date:
                 data.append({'date': article_date, 'headline': headline})
-                print()
 
         page_num += 1
         time.sleep(3)
