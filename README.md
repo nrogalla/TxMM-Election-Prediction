@@ -4,7 +4,13 @@ This repository is accompanying the paper "'What If the News Voted?' - Predictin
 
 Abstract: 
 
-Structure:
+Structure: 
+-  TxMM_analysis gives an overview of the election prediction outcome
+-  Clustering Analysis conductes the headline clustering
+-  Headline scraping provides a notebook to scrape the necessary headlines
+-  sentiment_analysis conducts both headline and programme sentiment analysis
+
 
 Cloning: 
-
+  git clone https://github.com/nrogalla/TxMM-Election-Prediction.git
+  pip install -r requirements.txt
